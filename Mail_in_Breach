@@ -1,0 +1,34 @@
+//Maltego Machine Mail in Breach by K2SOsint!
+
+//This machine uses Have I been Pwned, Constella & Darkside to check if an e-mail address has been breached!
+machine("k2soint.MailinBreach", 
+        displayName:"Mail in Breach", 
+        author:"k2sosint",
+        description: "Searches for mail in breaches, then extracts PII") {
+
+    //Start of the machine
+    start {
+paths{
+    path{ 
+        run("paterva.v2.HIBPv3breachedEmail")
+    }
+    path{
+        run("paterva.v2.datapass-poi.maltego.constella.search_for_email")
+        run("paterva.v2.datapass-poi.maltego.constella.extract_all_data")
+    }
+    path{
+        run("paterva.v2.datapass-poi.d4PIIcredsearchemail")
+        run("paterva.v2.datapass-poi.d4piiext")
+    }
+    path{
+        run("paterva.v2.maltego.labs.IPQualityScore.email_tags")
+    }
+    
+        path{
+        run("paterva.v2.maltego.labs.IPQualityScore.email_verify")
+    }
+}
+        }
+        }
+        
+//End of the machine. Enjoy!
