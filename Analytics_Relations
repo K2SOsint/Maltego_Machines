@@ -1,0 +1,35 @@
+machine("k2sosint.Analytics_Relations", 
+        displayName:"Analytics_Relations", 
+        author:"k2sosint", 
+        description:"Small Machine to find relations between sites through analytics codes.") {
+
+    start {
+        run("paterva.v2.DomainToWebsite_DNS")
+        run("paterva.v2.builtwith.websiteToRelationships")
+        
+       paths {
+           path {
+               
+                // Filter for Google Tag Manager
+                type("maltego.builtwith.Relationship") 
+                property("relationshipType", equalTo:"google-tag-manager")
+                log("Processing Google Tag Manager relationships")
+                run("paterva.v2.builtwith.builtWithRelationshipToWebsites")
+                run("paterva.v2.DNSNameToDomain_DNS")
+                }
+           
+           path {
+               
+                // Filter for Google Analytics
+                type("maltego.builtwith.Relationship") 
+                property("relationshipType", equalTo:"google-analytics")
+                log("Processing Google Tag Manager relationships")
+                run("paterva.v2.builtwith.builtWithRelationshipToWebsites")
+                run("paterva.v2.DNSNameToDomain_DNS")
+                }
+            }
+
+        
+
+        }
+}            
