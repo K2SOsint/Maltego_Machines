@@ -1,2 +1,14 @@
-# Maltego_Machines
-This is a small repo that contains example machines that can be used in Maltego to automate certain transform steps.
+# K2SOsint-Maltego_Machines
+A small collection of machines that can be used in Maltego to automate certain transform steps. For more information on Maltego, visit https://maltego.com.
+  
+# How to use:
+Visit one of the machines in this repo and take a look at the first lines of code. 
+When in Maltego, go to the Machines tab, choose 'New Machine', fill in the blanks (info can be found in those first lines of code) and choose 'Blank Machine'. Copy and paste all of the code from the machine in this repo to replace the default code from the blank machine. Press 'Save' and there you go!
+
+Please note that machines only work when you start them from the right type of entity and have all of the required transforms installed.
+
+### Analytic Relations
+Find other websites using the same analytics codes. Uses standard transforms as well as the ones from BuiltWith. 
+
+<br>  
+Please use these machines in a professional manner.
