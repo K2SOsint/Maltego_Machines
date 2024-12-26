@@ -7,8 +7,11 @@ When in Maltego, go to the Machines tab, choose 'New Machine', fill in the blank
 
 Please note that machines only work when you start them from the right type of entity and have all of the required transforms installed.
 
-### Analytic Relations
+### Analytical Relations 📈
 Find other websites using the same analytics codes. Uses standard transforms as well as the ones from BuiltWith. 
+
+### Mail-in-Breach 📧
+This machine uses the transform sets from HaveIbeenPwned, Constella & Darkside to check if an e-mail address has been breached!
 
 <br>  
 Please use these machines in a professional manner.
