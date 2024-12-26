@@ -7,7 +7,7 @@ When in Maltego, go to the Machines tab, choose 'New Machine', fill in the blank
 
 Please note that machines only work when you start them from the right type of entity and have all of the required transforms installed.
 
-### Analytical Relations 📈
+### Analytics Relations 📈
 Find other websites using the same analytics codes. Uses standard transforms as well as the ones from BuiltWith. 
 
 ### Mail-in-Breach 📧
