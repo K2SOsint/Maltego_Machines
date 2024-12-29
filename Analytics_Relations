@@ -1,3 +1,7 @@
+//Maltego Analytics Relations by K2SOsint!
+
+//This machine uses standard maltego tranforms & builtwith transforms!
+
 machine("k2sosint.Analytics_Relations", 
         displayName:"Analytics_Relations", 
         author:"k2sosint", 
@@ -33,3 +37,5 @@ machine("k2sosint.Analytics_Relations",
 
         }
 }            
+
+//End of the machine. Enjoy!
