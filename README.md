@@ -13,5 +13,8 @@ Find other websites using the same analytics codes. Uses standard transforms as 
 ### Mail-in-Breach 📧
 This machine uses the transform sets from HaveIbeenPwned, Constella & Darkside to check if an e-mail address has been breached!
 
+### VulScan 📧
+This machine uses the transform sets from the basic Utilities, WhoisXML, Shodan (API required), Vulners and SOCradar to pivot from a domain to vulnerabilities, CVE's including CVSS score.
+
 <br>  
 Please use these machines in a professional manner.
