@@ -1,0 +1,45 @@
+machine("k2sosint.VulScan",
+    displayName:"VulScan",
+    author:"k2sosint",
+    description:"Checking like Spock from domain to IP to vulnerabilities") {
+
+  start {
+
+    // --- Fan out from Domain in parallel ---
+    paths {
+      path { type("maltego.Domain"); run("paterva.v2.DomainToDNSName_DB_interest") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToMXrecord_DNS") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToNSrecord_DNS") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToDNSName_ZT") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToDNSName_DNSBrute") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToDNSName_DB") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToDNSNameSchema") }
+      path { type("maltego.Domain"); run("paterva.v2.DomainToWebsite_DNS") }
+    }
+
+    // If DomainToWebsite_DNS is meant to contribute DNS names, add a Website->DNSName step:
+    // path { type("maltego.Website"); run("paterva.v2.WebsiteToDNSName") }
+
+    // --- Resolve all DNSName outputs to IPs (serial-resolver) ---
+    type("maltego.DNSName")
+    run("paterva.v2.DNSNameToIPAddress_DNS")
+
+    // --- From IP: run Netblock branch AND Vulns branch in parallel ---
+    type("maltego.IPv4Address")
+    paths {
+      // Route A: Come to the Netblock side
+      path {
+        run("paterva.v2.IPAddressToNetblock_SS")
+        run("paterva.v2.NetblockToAS_SS")
+        run("paterva.v2.whoisxml.ipnetblocks.ASNumberToCompany")
+      }
+      // Route B: Join the Vulnerabilities side
+      path {
+        run("paterva.v2.maltego.shodan.ipv4AddressToVulnerabilities")
+        run("paterva.v2.datapass-cti.maltego.jinxpy_vulners.to_cvss_from_cve")
+        run("paterva.v2.datapass-cti.maltego.jinxpy_socradar.find_cvss_related_to_cve")
+      }
+    }
+
+  }
+}
